@@ -1,0 +1,215 @@
+---
+import HeaderMenu from "../components/HeaderMenu.astro";
+import Line from "../components/Line.astro";
+import { ViewTransitions } from "astro:transitions";
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="author" content="Pablo León Toro" />
+		<meta name="description" content="Web App inicial Astro." />
+		<!-- para el ceo -->
+		<meta name="keywords" content="contenido1, contenido2, contenido3" />
+		<ViewTransitions />
+	</head>
+	<body>
+		<HeaderMenu />
+		<main>
+			<slot>
+				<section class="slot-defecto">
+					<Line />
+					<h1>redtech</h1>
+					<p>Esperando contenidos...</p>
+					<Line />
+				</section>
+			</slot>
+		</main>
+	</body>
+</html>
+
+<style is:global>
+	/* Estilos Globales */
+
+	/* ------------------- ------------------- Configuración ------------------- ------------------- */
+	*,
+	*::after,
+	*::before {
+		box-sizing: border-box;
+		min-width: 0;
+	}
+
+	/* ------------------- ------------------- Variables ------------------- ------------------- */
+	:root {
+		/* colores -> relativos a modo */
+
+		--color-wb-0: rgb(0, 0, 0);
+		--color-wb-1: rgb(26, 26, 26);
+		--color-wb-2: rgb(60, 60, 60);
+		--color-wb-3: rgb(200, 200, 200);
+		--color-wb-4: rgb(230, 230, 230);
+		--color-wb-5: rgb(255, 255, 255);
+
+		--color-wb-0-80: rgba(0, 0, 0, 0.8);
+		--color-wb-0-60: rgba(0, 0, 0, 0.6);
+		--color-wb-0-40: rgba(0, 0, 0, 0.4);
+		--color-wb-0-16: rgba(0, 0, 0, 0.16);
+		--color-wb-4-90: rgba(230, 230, 230, 0.9);
+		--color-wb-5-60: rgba(255, 255, 255, 0.6);
+		--color-wb-5-80: rgba(255, 255, 255, 0.8);
+
+		/* unidades de corte media q */
+
+		--mq-xs: 320px; /* xs */
+		--mq-s: 420px; /* s */
+		--mq-m: 768px; /* m */
+		--mq-l: 1024px; /* l */
+		--mq-xl: 1620px; /* xl */
+
+		--header-max-h: 5rem; /* altura max del header y la navegación. */
+		--maximus-app: 2400px; /* valor máximo del ancho total de la web */
+		--maximus-contenido: 1024px; /* valor máximo del ancho total del contenido */
+		--max-med-contenido: 92lvw; /* valor máximo hasta donde llega el contenido por debajo del maximus-contenido*/
+	}
+
+	/* ------------------- ------------------- Estilos Generales ------------------- ------------------- */
+	body {
+		background-color: var(--color-wb-5);
+		color: var(--color-wb-0);
+		/* min-height: 100lvh; */
+		margin: 0;
+		padding: 0;
+		font-family:
+			system-ui,
+			-apple-system,
+			BlinkMacSystemFont,
+			"Segoe UI",
+			Roboto,
+			Oxygen,
+			Ubuntu,
+			Cantarell,
+			"Open Sans",
+			"Helvetica Neue",
+			sans-serif;
+	}
+
+	/* ------------------- colores al seleccionar el texto ------------------- */
+	::selection {
+		background-color: var(--color-wb-0);
+		color: var(--color-wb-5);
+	}
+
+	/* ------------------- main: slot general de todas las pages ------------------- */
+	main {
+		width: var(--max-med-contenido);
+		max-width: var(--maximus-contenido);
+		margin: var(--header-max-h) auto 0 auto;
+		padding-top: 2rem;
+		padding-bottom: 2rem;
+
+		min-height: calc(100dvh - var(--header-max-h));
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 0px;
+	}
+
+	/* ------------------- h1 .. h6 / p / img / a / li ------------------- */
+	h1,
+	.h1,
+	h2,
+	.h2,
+	h3,
+	.h3,
+	h4,
+	.h4,
+	h5,
+	.h5,
+	h6,
+	.h6 {
+		font-weight: 600;
+		line-height: 1.2;
+		text-wrap: balance;
+		margin-top: calc(0.4rem + 0.5vh);
+		margin-bottom: calc(0.8rem + 0.5vh);
+	}
+	h1,
+	.h1 {
+		font-size: calc(2.2rem + 1.2vw);
+	}
+	h2,
+	.h2 {
+		font-size: calc(1.8rem + 0.9vw);
+	}
+	h3,
+	.h3 {
+		font-size: calc(1.6rem + 0.6vw);
+	}
+	h4,
+	.h4 {
+		font-size: calc(1.4rem + 0.3vw);
+	}
+	h5,
+	.h5 {
+		font-size: 1.25rem;
+	}
+	h6,
+	.h6 {
+		font-size: 1rem;
+	}
+	p {
+		margin-top: 0;
+		margin-bottom: 1rem;
+		font-size: 1rem;
+		font-weight: 300;
+		line-height: 1.5;
+		text-wrap: pretty;
+	}
+	img {
+		vertical-align: top;
+		object-fit: cover;
+		width: 100%;
+	}
+	a {
+		font-size: 1rem;
+		font-weight: 400;
+		text-decoration: none;
+		color: var(--color-wb-0);
+	}
+
+	a:visited {
+		color: var(--color-wb-0);
+	}
+
+	a:is(:hover, :focus-within) {
+		text-decoration: underline;
+	}
+
+	li {
+		margin-top: 0;
+		margin-bottom: 1rem;
+		font-size: 1rem;
+		font-weight: 300;
+		line-height: 1.5;
+	}
+
+	/* ------------------- Por defecto cuando no entra contenido al <slot> ------------------- */
+
+	section.slot-defecto {
+		text-align: center;
+	}
+</style>
+
+

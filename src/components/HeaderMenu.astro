@@ -1,0 +1,111 @@
+---
+
+---
+
+<header>
+    <div class="sub-container-header">
+        <div class="title-container">
+            <img class="red-bird" src="/public/favicon.svg" alt="Red Bird" />
+            <h1 class="title-principal">redtech</h1>
+        </div>
+        <nav class="nav-principal">
+            <a href="/">Inicio</a>
+            <a href="/about">About</a>
+            <a href="/markdown">Markdown</a>
+            <a href="/componentes">Componentes</a>
+        </nav>
+    </div>
+</header>
+
+<style>
+    header {
+        cursor: default;
+        user-select: none;
+
+        width: 100%;
+        height: var(--header-max-h);
+        top: 0px;
+
+        background-color: var(--color-wb-5-80);
+        color: var(--color-wb-0);
+
+        z-index: 3;
+        overflow: hidden;
+        position: fixed;
+
+        display: flex;
+        align-items: center;
+
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.01);
+        backdrop-filter: blur(3px);
+
+        animation: anim-header linear both;
+        animation-timeline: scroll(root block);
+        animation-range: 0px 5rem;
+    }
+
+    @keyframes anim-header {
+        to {
+            box-shadow: 0px 2px 2px var(--color-wb-0-16);
+        }
+    }
+
+    div.sub-container-header {
+        height: 100%;
+        width: var(--max-med-contenido);
+        max-width: var(--maximus-contenido);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    div.title-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    img.red-bird {
+        min-width: 3rem;
+        width: calc(3rem + 1lvw);
+        object-fit: contain;
+        object-position: center;
+        margin-right: calc(0.6rem + 0.8lvw);
+    }
+
+    .title-principal {
+        font-size: calc(1.6rem + 0.6vw);
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        gap: calc(0.5rem + 0.5lvw);
+    }
+
+    nav > a {
+        padding: 0.8rem calc(0.5rem + 0.5lvw);
+        border-radius: 3px;
+        transition: scale ease 500ms;
+    }
+    a:is(:hover, :focus-within, .active) {
+        /* animar con opacity */
+        cursor: pointer;
+        text-decoration: none;
+        scale: 1.05;
+
+        background: var(--color-wb-4);
+        background: linear-gradient(
+            180deg,
+            var(--color-wb-4-90) 0%,
+            var(--color-wb-5-60) 80%
+        );
+    }
+
+    @media (width < 768px) {
+        nav {
+            display: none;
+        }
+    }
+</style>
